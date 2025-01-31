@@ -1,9 +1,8 @@
 package app.vitune.android.ui.screens.home
 
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.saveable.rememberSaveableStateHolder
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -41,6 +40,7 @@ fun HomeScreen() {
 
     PersistMapCleanup("home/")
 
+    // Route handler for various screens
     RouteHandler {
         GlobalRoutes()
 
@@ -70,7 +70,9 @@ fun HomeScreen() {
                 topIconButtonId = R.drawable.settings,
                 onTopIconButtonClick = { settingsRoute() },
                 bottomBar = {
-                    BottomNavigation {
+                    BottomNavigation(
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
                         BottomNavigationItem(
                             selected = UIStatePreferences.homeScreenTabIndex == 0,
                             onClick = { UIStatePreferences.homeScreenTabIndex = 0 },
