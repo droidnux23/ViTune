@@ -1,7 +1,12 @@
 package app.vitune.android.ui.screens.home
 
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import app.vitune.android.R
 import app.vitune.android.models.toUiMood
 import app.vitune.android.preferences.UIStatePreferences
@@ -64,16 +69,51 @@ fun HomeScreen() {
                 key = "home",
                 topIconButtonId = R.drawable.settings,
                 onTopIconButtonClick = { settingsRoute() },
-                tabIndex = UIStatePreferences.homeScreenTabIndex,
-                onTabChange = { UIStatePreferences.homeScreenTabIndex = it },
-                tabColumnContent = {
-                    tab(0, R.string.quick_picks, R.drawable.sparkles)
-                    tab(1, R.string.discover, R.drawable.globe)
-                    tab(2, R.string.songs, R.drawable.musical_notes)
-                    tab(3, R.string.playlists, R.drawable.playlist)
-                    tab(4, R.string.artists, R.drawable.person)
-                    tab(5, R.string.albums, R.drawable.disc)
-                    tab(6, R.string.local, R.drawable.download)
+                bottomBar = {
+                    BottomNavigation {
+                        BottomNavigationItem(
+                            selected = UIStatePreferences.homeScreenTabIndex == 0,
+                            onClick = { UIStatePreferences.homeScreenTabIndex = 0 },
+                            label = { Text(stringResource(R.string.quick_picks)) },
+                            icon = { Icon(painterResource(R.drawable.sparkles), contentDescription = null) }
+                        )
+                        BottomNavigationItem(
+                            selected = UIStatePreferences.homeScreenTabIndex == 1,
+                            onClick = { UIStatePreferences.homeScreenTabIndex = 1 },
+                            label = { Text(stringResource(R.string.discover)) },
+                            icon = { Icon(painterResource(R.drawable.globe), contentDescription = null) }
+                        )
+                        BottomNavigationItem(
+                            selected = UIStatePreferences.homeScreenTabIndex == 2,
+                            onClick = { UIStatePreferences.homeScreenTabIndex = 2 },
+                            label = { Text(stringResource(R.string.songs)) },
+                            icon = { Icon(painterResource(R.drawable.musical_notes), contentDescription = null) }
+                        )
+                        BottomNavigationItem(
+                            selected = UIStatePreferences.homeScreenTabIndex == 3,
+                            onClick = { UIStatePreferences.homeScreenTabIndex = 3 },
+                            label = { Text(stringResource(R.string.playlists)) },
+                            icon = { Icon(painterResource(R.drawable.playlist), contentDescription = null) }
+                        )
+                        BottomNavigationItem(
+                            selected = UIStatePreferences.homeScreenTabIndex == 4,
+                            onClick = { UIStatePreferences.homeScreenTabIndex = 4 },
+                            label = { Text(stringResource(R.string.artists)) },
+                            icon = { Icon(painterResource(R.drawable.person), contentDescription = null) }
+                        )
+                        BottomNavigationItem(
+                            selected = UIStatePreferences.homeScreenTabIndex == 5,
+                            onClick = { UIStatePreferences.homeScreenTabIndex = 5 },
+                            label = { Text(stringResource(R.string.albums)) },
+                            icon = { Icon(painterResource(R.drawable.disc), contentDescription = null) }
+                        )
+                        BottomNavigationItem(
+                            selected = UIStatePreferences.homeScreenTabIndex == 6,
+                            onClick = { UIStatePreferences.homeScreenTabIndex = 6 },
+                            label = { Text(stringResource(R.string.local)) },
+                            icon = { Icon(painterResource(R.drawable.download), contentDescription = null) }
+                        )
+                    }
                 }
             ) { currentTabIndex ->
                 saveableStateHolder.SaveableStateProvider(key = currentTabIndex) {
