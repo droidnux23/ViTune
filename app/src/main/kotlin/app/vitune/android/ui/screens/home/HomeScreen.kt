@@ -68,12 +68,10 @@ fun HomeScreen() {
                 onTabChange = { UIStatePreferences.homeScreenTabIndex = it },
                 tabColumnContent = {
                     tab(0, R.string.quick_picks, R.drawable.sparkles)
-                    tab(1, R.string.discover, R.drawable.globe)
-                    tab(2, R.string.songs, R.drawable.musical_notes)
+                    tab(1, R.string.songs, R.drawable.musical_notes)
+                    tab(2, R.string.discover, R.drawable.globe)
                     tab(3, R.string.playlists, R.drawable.playlist)
-                    tab(4, R.string.artists, R.drawable.person)
-                    tab(5, R.string.albums, R.drawable.disc)
-                    tab(6, R.string.local, R.drawable.download)
+           //       tab(4, R.string.local, R.drawable.download)
                 }
             ) { currentTabIndex ->
                 saveableStateHolder.SaveableStateProvider(key = currentTabIndex) {
